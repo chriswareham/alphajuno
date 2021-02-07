@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Roland MIDI System Exclusive Control</title>
+</head>
+<body bgcolor="white" text="#000000" link="#000099" vlink="#000099">
+
+<h1 align="center">Roland MIDI System Exclusive Control</h1>
+
+<h2>Control That Juno!</h2>
+
+<p>This guide will explain how you can use MIDI System Exclusive Messages (SysEx) to achieve
+Real-Time control of all editable parameters of the Roland <a href="#juno">Juno 106</a>, 
+<a href="#ajuno">Alpha Juno 1, 2</a> and <a href="#ajuno">MKS-50</a>.
+The MIDI SysEx information can be recorded, transmitted and replayed just like MIDI controller data, giving you totally 
+automated and controllable filtering and editing and parameter editing for these classic synths!</p>
+
+<p>All you need is a Hardware or Software Sequencer that is capable of outputting 
+SysEx MIDI messages. Sequencers like Performer, Cubase, Logic, and hardware like the Roland 
+PG-300 Controller have this ability. In the following guide, you will get the info you need 
+to set-up Continuous Controllers or Mixer Maps that you can use within your Sequencing
+program to provide, record and playback real-time editing.</p>
+
+<h2><a name="juno">Roland Juno 106 Control</a></h2>
+
+<p>The Juno 106 will transmit SysEx messages through its MIDI Out port when the MIDI Function 
+switch is set to position 3 (III). Any slider moves or buttons pushed on the Juno 106's front panel 
+will be transmitted and can be recorded into a sequencer - and played back! Any on-board editing you transmit and record
+into your sequencer will always be re-applied to the Juno 106 during playback.</p>
+
+<p>However you may want to create your own programmer/controller for your Juno 106
+using your Sequencer program. Simply set-up a Continuous Controller that will send 
+SysEx MIDI Messages to your Juno 106 and use the following code-chart to create controllers
+for the Juno-106 parameters you want to edit.</p>
+
+<p>I. First you must set the Juno 106's Midi Mode switch to III (on the rear).</p>
+
+<p>II. <u>THESE ARE THE COMPONENTS OF THE SYSTEM EXCLUSIVE MESSAGE:</u></p>
+
+<pre>
+F0 [Exclusive]
+41 [Roland ID#]
+32 [Function Type]
+0N [N+1=MIDI channel (N=0-15, Chan 1=00)]
+XX [Parameter number (0-09, 0A-0F)] see below
+YY [Variable value (0-127)] Should be left at 00
+F7 [End of Exclusive]
+</pre>
+
+<p>III. <b>HERE'S AN EXAMPLE:</b></p>
+
+<p>A SysEx message for editing the VCF Resonance Parameter:</p>
+
+<pre>
+F0 41 32 00 <b>06</b> 00 F7
+</pre>
+
+<p>&quot;<b>06</b>&quot; Is the SysEx code for the VCF Resonance parameter</p>
+
+<h3>Parameter Numbers (XX) For The Juno-106:</h3>
+
+<table bgcolor="#e6e6e6" border="1" cellpadding="3" cellspacing="0">
+<tr><td bgcolor="black"><font size="2" color="white">CODE (XX)</font></td><td bgcolor="black"><font size="2" color="white">EDIT PARAMETER</font></td><td bgcolor="black"><font size="2" color="white">COMPLETE SYSEX CODE</font></td></tr>
+<tr><td>00</td><td>LFO rate</td><td>F0 41 32 00 <b>00</b> 00 F7</td></tr>
+<tr><td>01</td><td>LFO delay</td><td>F0 41 32 00 <b>01</b> 00 F7</td></tr>
+<tr><td>02</td><td>DCO LFO modulation level</td><td>F0 41 32 00 <b>02</b> 00 F7</td></tr>
+<tr><td>03</td><td>DCO PWM modulation level</td><td>F0 41 32 00 <b>03</b> 00 F7</td></tr>
+<tr><td>04</td><td>Noise level</td><td>F0 41 32 00 <b>04</b> 00 F7</td></tr>
+<tr><td>05</td><td>VCF cutoff level</td><td>F0 41 32 00 <b>05</b> 00 F7</td></tr>
+<tr><td>06</td><td>VCF resonance level</td><td>F0 41 32 00 <b>06</b> 00 F7</td></tr>
+<tr><td>07</td><td>VCF ENV level</td><td>F0 41 32 00 <b>07</b> 00 F7</td></tr>
+<tr><td>08</td><td>VCF LFO modulation level</td><td>F0 41 32 00 <b>08</b> 00 F7</td></tr>
+<tr><td>09</td><td>VCF KYBD modulation level</td><td>F0 41 32 00 <b>09</b> 00 F7</td></tr>
+<tr><td>0A</td><td>VCA level</td><td>F0 41 32 00 <b>0A</b> 00 F7</td></tr>
+<tr><td>0B</td><td>ENV attack rate</td><td>F0 41 32 00 <b>0B</b> 00 F7</td></tr>
+<tr><td>0C</td><td>ENV decay rate</td><td>F0 41 32 00 <b>0C</b> 00 F7</td></tr>
+<tr><td>0D</td><td>ENV sustain level</td><td>F0 41 32 00 <b>0D</b> 00 F7</td></tr>
+<tr><td>0E</td><td>ENV release rate</td><td>F0 41 32 00 <b>0E</b> 00 F7</td></tr>
+<tr><td>0F</td><td>Sub level</td><td>F0 41 32 00 <b>0F</b> 00 F7</td></tr>
+</table>
+
+<h3>Extra Links And Resources:</h3>
+
+<ol>
+<li><a href="http://www.eskimo.com/~syzygy/juno106faq.html">Here</a> is the Juno 106 FAQ.</li>
+<li><a href="http://www.eskimo.com/~syzygy/juno106midi.html">Here</a> is the Juno 106 Midi Implementation chart.
+(note: it contains some invalid parameter codes)</li>
+</ol>
+
+<h2><a name="ajuno">Roland Alpha Juno 1,2 & MKS-50 Control</a></h2>
+
+<p>The Alpha Juno 1, 2 and MKS-50 transmit system exclusive midi messages through the Midi Out port 
+whenever you do any editing via the alpha-dial or press any buttons. These SysEx messages can be recorded into 
+a sequencer and played back! And any editing you've recorded will always be re-applied during playback 
+and can be further fine-tuned.</p>
+
+<p>You may be able to create your own external programmer/controllers for your Juno
+using your Sequencer or computer. Simply create a Controller that will send 
+System Exclusive MIDI Messages to your Juno and use the following codes to create controllers
+for the parameters of your choice!</p>
+
+<p>I. First scroll through the Midi menu and turn Exclusive Messages <b>ON</b>.</p>
+
+<p>II. <u>THESE ARE THE COMPONENTS OF THE SYSTEM EXCLUSIVE MESSAGE:</u></p>
+
+<pre>
+F0 [Exclusive]
+41 [Roland ID#]
+36 [Individual Tone Parameters]
+0N [N=MIDI channel (N=0-F, Chan 1=00 Chan 16=0F)]
+23 [Format type]
+20 [unknown]
+01 [unknown]
+XX [Parameter number (0-23)] see below
+YY [Value (0-127)] Can be left at 00
+F7 [End of Exclusive]
+</pre>
+
+<p>III. <B>HERE'S AN EXAMPLE:</B></p>
+
+<p>A SysEx message for editing the VCF Resonance Parameter:</p>
+
+<pre>
+F0 41 36 00 23 20 01 <b>11 00</b> F7
+</pre>
+
+<p>"<b>11</b>" Is the SysEx code for the VCF Resonance edit parameter</p>
+
+<p>"<b>00</b>" Is the SysEx code for the variable value of the current edit parameter</p>
+
+<h3>Parameter Numbers (XX) For The Alpha Juno Synths:</h3>
+
+<p>(Parentheses indicated range of variable values 'YY' possible for the parameter.)</p>
+
+<table bgcolor="#e6e6e6" border="1" cellpadding="3" cellspacing="0">
+<tr><td bgcolor="black"><font size="2" color="white">CODE (XX)</font></td><td bgcolor="black"><font size="2" color="white">EDIT PARAMETER</font></td><td bgcolor="black"><font size="2" color="white">COMPLETE SYSEX CODE</font></td></tr>
+<tr><td>00</td><td>DCO Env. Mode <font size="1">(0=Normal, 1=Inverted, 2=Normal-Dynamic, 3=Inv.-Dynamic)</font></td><td>F0 41 36 00 23 20 01 <b>00</b> 00 F7</td></tr>
+<tr><td>01</td><td>VCF Env. Mode <font size="1">(0=Normal, 1=Inverted, 2=Normal-Dynamic, 3=Dynamic)</font></td><td>F0 41 36 00 23 20 01 <b>01</b> 00 F7</td></tr>
+<tr><td>02</td><td>VCA Env. Mode <font size="1">(0=Normal, 1=Gate, 2=Normal-Dynamic, 3=Gate-Dynamic)</font></td><td>F0 41 36 00 23 20 01 <b>02</b> 00 F7</td></tr>
+<tr><td>03</td><td>DCO Wave Pulse <font size="1">(0..3)</font></td><td>F0 41 36 00 23 20 01 <b>03</b> 00 F7</td></tr>
+<tr><td>04</td><td>DCO Wave Saw <font size="1">(0..5)</font></td><td>F0 41 36 00 23 20 01 <b>04</b> 00 F7</td></tr>
+<tr><td>05</td><td>DCO Wave Sub <font size="1">(0..5)</font></td><td>F0 41 36 00 23 20 01 <b>05</b> 00 F7</td></tr>
+<tr><td>06</td><td>DCO Range <font size="1">(0=4', 1=8', 2=16', 3=32')</font></td><td>F0 41 36 00 23 20 01 <b>06</b> 00 F7</td></tr>
+<tr><td>07</td><td>DCO Sub Level <font size="1">(0..3)</font></td><td>F0 41 36 00 23 20 01 <b>07</b> 00 F7</td></tr>
+<tr><td>08</td><td>DCO Noise <font size="1">(0..3)</font></td><td>F0 41 36 00 23 20 01 <b>08</b> 00 F7</td></tr>
+<tr><td>09</td><td>HPF Cutoff <font size="1">(0..3)</font></td><td>F0 41 36 00 23 20 01 <b>09</b> 00 F7</td></tr>
+<tr><td>0A</td><td>Chorus Switch <font size="1">(0=Off, 1=On)</font></td><td>F0 41 36 00 23 20 01 <b>0A</b> 00 F7</td></tr>
+<tr><td>0B</td><td>DCO LFO Mod. <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>0B</b> 00 F7</td></tr>
+<tr><td>0C</td><td>DCO ENV Mod. <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>0C</b> 00 F7</td></tr>
+<tr><td>0D</td><td>DCO After Mod. <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>0D</b> 00 F7</td></tr>
+<tr><td>0E</td><td>DCO PWM Depth <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>0E</b> 00 F7</td></tr>
+<tr><td>0F</td><td>DCO PWM Rate <font size="1">(0..7F)</font> 0 = Pulse Width Manual 1..7F = PW LFO Rate</td><td>F0 41 36 00 23 20 01 <b>0F</b> 00 F7</td></tr>
+<tr><td>10</td><td>VCF Cutoff <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>10</b> 00 F7</td></tr>
+<tr><td>11</td><td>VCF Resonance <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>11</b> 00 F7</td></tr>
+<tr><td>12</td><td>VCF LFO Mod. <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>12</b> 00 F7</td></tr>
+<tr><td>13</td><td>VCF ENV Mod. <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>13</b> 00 F7</td></tr>
+<tr><td>14</td><td>VCF Key Follow <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>14</b> 00 F7</td></tr>
+<tr><td>15</td><td>VCF Aftertouch <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>15</b> 00 F7</td></tr>
+<tr><td>16</td><td>VCA Level <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>16</b> 00 F7</td></tr>
+<tr><td>17</td><td>VCA Aftertouch <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>17</b> 00 F7</td></tr>
+<tr><td>18</td><td>LFO Rate <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>18</b> 00 F7</td></tr>
+<tr><td>19</td><td>LFO Delay <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>19</b> 00 F7</td></tr>
+<tr><td>1A</td><td>ENV T1 <font size="1">(0..7F)</font> Attack Time</td><td>F0 41 36 00 23 20 01 <b>1A</b> 00 F7</td></tr>
+<tr><td>1B</td><td>ENV L1 <font size="1">(0..7F)</font> Attack Level</td><td>F0 41 36 00 23 20 01 <b>1B</b> 00 F7</td></tr>
+<tr><td>1C</td><td>ENV T2 <font size="1">(0..7F)</font> Break Time</td><td>F0 41 36 00 23 20 01 <b>1C</b> 00 F7</td></tr>
+<tr><td>1D</td><td>ENV L2 <font size="1">(0..7F)</font> Break Level</td><td>F0 41 36 00 23 20 01 <b>1D</b> 00 F7</td></tr>
+<tr><td>1E</td><td>ENV T3 <font size="1">(0..7F)</font> Decay Time</td><td>F0 41 36 00 23 20 01 <b>1E</b> 00 F7</td></tr>
+<tr><td>1F</td><td>ENV L3 <font size="1">(0..7F)</font> Sustain Level</td><td>F0 41 36 00 23 20 01 <b>1F</b> 00 F7</td></tr>
+<tr><td>20</td><td>ENV T4 <font size="1">(0..7F)</font> Release Time</td><td>F0 41 36 00 23 20 01 <b>20</b> 00 F7</td></tr>
+<tr><td>21</td><td>ENV Key Follow <font size="1">(0..7F)</font></td><td>F0 41 36 00 23 20 01 <b>21</b> 00 F7</td></tr>
+<tr><td>22</td><td>Chorus Rate <font size="1">(0..FF)</font></td><td>F0 41 36 00 23 20 01 <b>22</b> 00 F7</td></tr>
+<tr><td>23</td><td>Bender Range <font size="1">(0..C)</font></td><td>F0 41 36 00 23 20 01 <b>23</b> 00 F7</td></tr>
+</table>
+
+</body>
+</html>

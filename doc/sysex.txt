@@ -1,0 +1,91 @@
+OK, All you fellow not-quite analog MKS-50/alpha-juno owners.  I just
+found the MIDI chart for my PG-300.  Contained in this note, therefore
+will be everything you need to write a programmer, using Winsysex, Max
+or whatever.
+
+N.B. ARCHIVE MAINTAINERS.  THis comes up from time to time, so maybe
+it should be archived!
+
+If any of you have Opcode MAX you should try and write an algorithmic
+sound transformer for your juno/mks50.  Here's an easy assignment:
+Take two Juno sounds -- say a piano and a tuba.  Can you morph smoothly
+between the two while you're playing?
+
+Here's how a PG-300 works: You have to enable sysex receive on your juno
+or your MKS50.  On the juno, it's one of the menu items that lives under
+the MIDI button.
+
+Then the PG-300 MIDI OUT goes to your juno MIDI IN.  When you diddle
+the sliders, the PG-300 squirts short SYSEX messages at the juno.
+
+As one may well imagine, it's just as easy for a sequencer or an editor
+to send these short sysex messages, so I'm going to break the code for you.
+
+THE ALPHA-JUNO/MKS50 REAL TIME VOICE MOD SYSEX
+
+F0	[sysex a'coming]
+41	[from roland]
+36	[Individual Tone Parameter]
+0N	[N = Basic Channel for the target synth]
+23	[Format type]
+01	[Level = 1 ] (what does this mean?)
+01	[Group = 1 ] (or this)
+MM	[MM = 0..35: index of the parameter to change]
+VV	[VV = 0..127: parameter value]
+F7	[sysex all done]
+
+The parameters are as follows:
+#  Function
+__ ___________________________
+ 0 DCO Env. Mode [0=Normal, 1=Inverted, 2=Normal-Dynamic, 3=Inverted-Dynamic]
+ 1 VCF Env. Mode [0=Normal, 1=Inverted, 2=Normal-Dynamic, 3=Dynamic]
+ 2 VCA Env. Mode [0=Normal, 1=Gate, 2=Normal-Dynamic, 3=Gate-Dynamic]
+ 3 DCO Wave Pulse [0..3]
+ 4 DCO Wave Saw   [0..5]
+ 5 DCO Wave Sub   [0..5]
+ 6 DCO Range      [0=4', 1=8', 2=16', 3=32']
+ 7 DCO Sub Level  [0..3]
+ 8 DCO Noise      [0..3]
+ 9 HPF Cutoff     [0..3]
+10 Chorus Switch  [0=Off, 1=On]
+11 DCO LFO Mod.   [0..127]
+12 DCO ENV Mod.   [0..127]
+13 DCO After Mod. [0..127]
+14 DCO PWM Depth  [0..127]
+15 DCO PWM Rate   [0..127] 0 = Pulse Width Manual 1..127=PW LFO Rate
+16 VCF Cutoff     [0..127]
+17 VCF Resonance  [0..127]
+18 VCF LFO Mod.   [0..127]
+19 VCF ENV Mod.   [0..127]
+20 VCF Key Follow [0..127]
+21 VCF Aftertouch [0..127]
+22 VCA Level      [0..127]
+23 VCA Aftertouch [0..127]
+24 LFO Rate       [0..127]
+25 LFO Delay      [0..127]
+26 ENV T1         [0..127] Attack Time
+27 ENV L1         [0..127] Attack Level
+28 ENV T2         [0..127] Break Time
+29 ENV L2         [0..127] Break Level
+30 ENV T3         [0..127] Decay Time
+31 ENV L3         [0..127] Sustain Level
+32 ENV T4         [0..127] Release Time
+33 ENV Key Follow [0..127]
+34 Chorus Rate    [0..127]
+35 Bender Range   [0..12]
+
+
+ALPHA-JUNO WHOLE HOG VOICE TRANSFER
+
+F0	[sysex a'coming]
+41	[from roland]
+35	[All Tone Parameters]
+0N	[N = Basic Channel for the target synth]
+23	[Format type]
+01	[Level = 1 ] (what does this mean?)
+01	[Group = 1 ] (or this)
+NN
+ .  36 bytes of voice data in the sequence given above.
+ . 
+NN
+F7	[sysex all done]
