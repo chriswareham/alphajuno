@@ -64,4 +64,11 @@ typedef struct {
 
 extern Patch *current_patch;
 
+typedef struct {
+    GtkWidget *statusbar;
+    guint statusbar_context_id;
+} Statusbar;
+
+void update_statusbar(Statusbar *, const gchar *);
+
 #endif /* !MAIN_H */

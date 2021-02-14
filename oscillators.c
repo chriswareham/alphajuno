@@ -70,55 +70,55 @@ new_oscillators_dialog(GtkWindow *parent)
     grid = create_grid(GTK_CONTAINER(widgets->dialog));
 
     label = gtk_label_new("DCO Range:");
-    widgets->dco_range = create_text_combo_box(dco_ranges, G_N_ELEMENTS(dco_ranges), 6);
+    widgets->dco_range = create_combo_box(dco_ranges, G_N_ELEMENTS(dco_ranges), PARAMETER_DCO_RANGE);
     create_grid_row(grid, 0, GTK_LABEL(label), GTK_WIDGET(widgets->dco_range));
 
     label = gtk_label_new("DCO LFO Depth:");
-    widgets->dco_lfo_depth = create_hscale(0, 127, 11);
+    widgets->dco_lfo_depth = create_hscale(0, 127, PARAMETER_DCO_LFO_DEPTH);
     create_grid_row(grid, 1, GTK_LABEL(label), GTK_WIDGET(widgets->dco_lfo_depth));
 
     label = gtk_label_new("DCO Env Depth:");
-    widgets->dco_env_depth = create_hscale(0, 127, 12);
+    widgets->dco_env_depth = create_hscale(0, 127, PARAMETER_DCO_ENV_DEPTH);
     create_grid_row(grid, 2, GTK_LABEL(label), GTK_WIDGET(widgets->dco_env_depth));
 
     label = gtk_label_new("DCO Env Mode:");
-    widgets->dco_env_mode = create_combo_box(dco_env_modes, G_N_ELEMENTS(dco_env_modes), 0);
+    widgets->dco_env_mode = create_combo_box_with_entries(dco_env_modes, G_N_ELEMENTS(dco_env_modes), PARAMETER_DCO_ENV_MODE);
     create_grid_row(grid, 3, GTK_LABEL(label), GTK_WIDGET(widgets->dco_env_mode));
 
     label = gtk_label_new("DCO Aftertouch Sensitivity:");
-    widgets->dco_aftertouch_sensitivity = create_hscale(0, 127, 13);
+    widgets->dco_aftertouch_sensitivity = create_hscale(0, 127, PARAMETER_DCO_AFTERTOUCH_SENSITIVITY);
     create_grid_row(grid, 4, GTK_LABEL(label), GTK_WIDGET(widgets->dco_aftertouch_sensitivity));
 
     label = gtk_label_new("DCO Bender Range:");
-    widgets->dco_bender_range = create_hscale(0, 12, 35);
+    widgets->dco_bender_range = create_hscale(0, 12, PARAMETER_DCO_BENDER_RANGE);
     create_grid_row(grid, 5, GTK_LABEL(label), GTK_WIDGET(widgets->dco_bender_range));
 
     label = gtk_label_new("DCO Pulse Waveform:");
-    widgets->dco_pulse_waveform = create_combo_box(dco_pulse_waveforms, G_N_ELEMENTS(dco_pulse_waveforms), 3);
+    widgets->dco_pulse_waveform = create_combo_box_with_entries(dco_pulse_waveforms, G_N_ELEMENTS(dco_pulse_waveforms), PARAMETER_DCO_PULSE_WAVEFORM);
     create_grid_row(grid, 6, GTK_LABEL(label), GTK_WIDGET(widgets->dco_pulse_waveform));
 
     label = gtk_label_new("DCO Sawtooth Waveform:");
-    widgets->dco_sawtooth_waveform = create_combo_box(dco_sawtooth_waveforms, G_N_ELEMENTS(dco_sawtooth_waveforms), 3);
+    widgets->dco_sawtooth_waveform = create_combo_box_with_entries(dco_sawtooth_waveforms, G_N_ELEMENTS(dco_sawtooth_waveforms), PARAMETER_DCO_SAWTOOTH_WAVEFORM);
     create_grid_row(grid, 7, GTK_LABEL(label), GTK_WIDGET(widgets->dco_sawtooth_waveform));
 
     label = gtk_label_new("DCO Sub-Oscillator Waveform:");
-    widgets->dco_sub_oscillator_waveform = create_combo_box(dco_sub_oscillator_waveforms, G_N_ELEMENTS(dco_sub_oscillator_waveforms), 5);
+    widgets->dco_sub_oscillator_waveform = create_combo_box_with_entries(dco_sub_oscillator_waveforms, G_N_ELEMENTS(dco_sub_oscillator_waveforms), PARAMETER_DCO_SUB_OSCILLATOR_WAVEFORM);
     create_grid_row(grid, 8, GTK_LABEL(label), GTK_WIDGET(widgets->dco_sub_oscillator_waveform));
 
     label = gtk_label_new("DCO Sub-Oscillator Level:");
-    widgets->dco_sub_oscillator_level = create_hscale(0, 3, 7);
+    widgets->dco_sub_oscillator_level = create_hscale(0, 3, PARAMETER_DCO_SUB_OSCILLATOR_LEVEL);
     create_grid_row(grid, 9, GTK_LABEL(label), GTK_WIDGET(widgets->dco_sub_oscillator_level));
 
     label = gtk_label_new("DCO Noise Level:");
-    widgets->dco_noise_level = create_hscale(0, 3, 8);
+    widgets->dco_noise_level = create_hscale(0, 3, PARAMETER_DCO_NOISE_LEVEL);
     create_grid_row(grid, 10, GTK_LABEL(label), GTK_WIDGET(widgets->dco_noise_level));
 
     label = gtk_label_new("DCO PWM Depth:");
-    widgets->dco_pwm_depth = create_hscale(0, 127, 14);
+    widgets->dco_pwm_depth = create_hscale(0, 127, PARAMETER_DCO_PWM_DEPTH);
     create_grid_row(grid, 11, GTK_LABEL(label), GTK_WIDGET(widgets->dco_pwm_depth));
 
     label = gtk_label_new("DCO PWM Rate:");
-    widgets->dco_pwm_rate = create_hscale(0, 127, 15);
+    widgets->dco_pwm_rate = create_hscale(0, 127, PARAMETER_DCO_PWM_RATE);
     create_grid_row(grid, 12, GTK_LABEL(label), GTK_WIDGET(widgets->dco_pwm_rate));
 
     button_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);

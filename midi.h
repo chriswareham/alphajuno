@@ -18,23 +18,21 @@
 #define MIDI_H
 
 typedef struct {
-    char *name, *device;
+    int id;
+    char *device;
+    char *name;
 } MIDIDevice;
 
 int midi_initialise(void);
 int midi_get_device_count(void);
 MIDIDevice **midi_get_devices(void);
 
-int midi_open(const char *);
+int midi_open(MIDIDevice *);
 int midi_close(void);
 
 int midi_note_on(unsigned char, unsigned char, unsigned char);
 int midi_note_off(unsigned char, unsigned char, unsigned char);
 int midi_program_change(unsigned char, unsigned char);
-
-int sysex_read(unsigned char *, unsigned, int);
 int sysex_write(unsigned char *, unsigned);
-
-unsigned char roland_checksum(unsigned char *, unsigned);
 
 #endif /* !MIDI_H */

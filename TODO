@@ -1,0 +1,1 @@
+Pass channel around rather than SysEx always being sent on channel one.

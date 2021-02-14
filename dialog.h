@@ -18,7 +18,7 @@
 #define DIALOG_H
 
 typedef struct {
-    gchar *text, *pixbuf;
+    gchar *label, *pixbuf;
 } ComboBoxEntry;
 
 GtkWindow *create_window(GtkWindow *, const gchar *, gboolean);
@@ -27,11 +27,11 @@ GtkGrid *create_grid(GtkContainer *);
 void create_grid_row(GtkGrid *, gint, GtkLabel *, GtkWidget *);
 
 GtkScale *create_hscale(gint, gint, gint);
-GtkComboBox *create_text_combo_box(gchar **, gint, gint);
-GtkComboBox *create_combo_box(ComboBoxEntry *, gint, gint);
+GtkComboBox *create_combo_box(gchar **, gint, gint);
+GtkComboBox *create_combo_box_with_entries(ComboBoxEntry *, gint, gint);
 GtkCheckButton *create_check_button(gint);
 
-void hscale_callback(GtkWidget *, gpointer);
+gboolean hscale_callback(GtkWidget *, GdkEvent *, gpointer);
 void combo_box_callback(GtkWidget *, gpointer);
 void check_button_callback(GtkWidget *, gpointer);
 void close_window_callback(GtkWidget *, gpointer);

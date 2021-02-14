@@ -47,42 +47,42 @@ new_envelope_dialog(GtkWindow *parent)
     gtk_container_add(GTK_CONTAINER(frame), widgets->envelope);
 
     label = gtk_label_new("Attack Time:");
-    widgets->env_t1 = create_hscale(0, 127, 26);
+    widgets->env_t1 = create_hscale(0, 127, PARAMETER_ENV_T1);
     g_signal_connect(G_OBJECT(widgets->env_t1), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 1, GTK_LABEL(label), GTK_WIDGET(widgets->env_t1));
 
     label = gtk_label_new("Attack Level:");
-    widgets->env_l1 = create_hscale(0, 127, 27);
+    widgets->env_l1 = create_hscale(0, 127, PARAMETER_ENV_L1);
     g_signal_connect(G_OBJECT(widgets->env_l1), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 2, GTK_LABEL(label), GTK_WIDGET(widgets->env_l1));
 
     label = gtk_label_new("Break Time:");
-    widgets->env_t2 = create_hscale(0, 127, 28);
+    widgets->env_t2 = create_hscale(0, 127, PARAMETER_ENV_T2);
     g_signal_connect(G_OBJECT(widgets->env_t2), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 3, GTK_LABEL(label), GTK_WIDGET(widgets->env_t2));
 
     label = gtk_label_new("Break Level:");
-    widgets->env_l2 = create_hscale(0, 127, 29);
+    widgets->env_l2 = create_hscale(0, 127, PARAMETER_ENV_L2);
     g_signal_connect(G_OBJECT(widgets->env_l2), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 4, GTK_LABEL(label), GTK_WIDGET(widgets->env_l2));
 
     label = gtk_label_new("Decay Time:");
-    widgets->env_t3 = create_hscale(0, 127, 30);
+    widgets->env_t3 = create_hscale(0, 127, PARAMETER_ENV_T3);
     g_signal_connect(G_OBJECT(widgets->env_t3), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 5, GTK_LABEL(label), GTK_WIDGET(widgets->env_t3));
 
     label = gtk_label_new("Sustain Level:");
-    widgets->env_l3 = create_hscale(0, 127, 31);
+    widgets->env_l3 = create_hscale(0, 127, PARAMETER_ENV_L3);
     g_signal_connect(G_OBJECT(widgets->env_l3), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 6, GTK_LABEL(label), GTK_WIDGET(widgets->env_l3));
 
     label = gtk_label_new("Release Time:");
-    widgets->env_t4 = create_hscale(0, 127, 32);
+    widgets->env_t4 = create_hscale(0, 127, PARAMETER_ENV_T4);
     g_signal_connect(G_OBJECT(widgets->env_t4), "value-changed", G_CALLBACK(envelope_callback), widgets);
     create_grid_row(grid, 7, GTK_LABEL(label), GTK_WIDGET(widgets->env_t4));
 
     label = gtk_label_new("Keyboard Follower:");
-    widgets->env_keyboard_follower = create_hscale(0, 15, 33);
+    widgets->env_keyboard_follower = create_hscale(0, 15, PARAMETER_ENV_KEYBOARD_FOLLOWER);
     create_grid_row(grid, 8, GTK_LABEL(label), GTK_WIDGET(widgets->env_keyboard_follower));
 
     button_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);

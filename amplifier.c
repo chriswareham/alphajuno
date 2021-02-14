@@ -41,31 +41,31 @@ new_amplifier_dialog(GtkWindow *parent)
     grid = create_grid(GTK_CONTAINER(widgets->dialog));
 
     label = gtk_label_new("VCA Level:");
-    widgets->vca_level = create_hscale(0, 127, 22);
+    widgets->vca_level = create_hscale(0, 127, PARAMETER_VCA_LEVEL);
     create_grid_row(grid, 0, GTK_LABEL(label), GTK_WIDGET(widgets->vca_level));
 
     label = gtk_label_new("VCA Env Mode:");
-    widgets->vca_env_mode = create_combo_box(vca_env_modes, G_N_ELEMENTS(vca_env_modes), 2);
+    widgets->vca_env_mode = create_combo_box_with_entries(vca_env_modes, G_N_ELEMENTS(vca_env_modes), PARAMETER_VCA_ENV_MODE);
     create_grid_row(grid, 1, GTK_LABEL(label), GTK_WIDGET(widgets->vca_env_mode));
 
     label = gtk_label_new("VCA Aftertouch Sensitivity:");
-    widgets->vca_aftertouch_sensitivity = create_hscale(0, 127, 23);
+    widgets->vca_aftertouch_sensitivity = create_hscale(0, 127, PARAMETER_VCA_AFTERTOUCH_SENSITIVITY);
     create_grid_row(grid, 2, GTK_LABEL(label), GTK_WIDGET(widgets->vca_aftertouch_sensitivity));
 
     label = gtk_label_new("Chorus:");
-    widgets->chorus = create_check_button(10);
+    widgets->chorus = create_check_button(PARAMETER_CHORUS);
     create_grid_row(grid, 3, GTK_LABEL(label), GTK_WIDGET(widgets->chorus));
 
     label = gtk_label_new("Chorus Rate:");
-    widgets->chorus_rate = create_hscale(0, 127, 34);
+    widgets->chorus_rate = create_hscale(0, 127, PARAMETER_CHORUS_RATE);
     create_grid_row(grid, 4, GTK_LABEL(label), GTK_WIDGET(widgets->chorus_rate));
 
     label = gtk_label_new("LFO Rate:");
-    widgets->lfo_rate = create_hscale(0, 127, 24);
+    widgets->lfo_rate = create_hscale(0, 127, PARAMETER_LFO_RATE);
     create_grid_row(grid, 5, GTK_LABEL(label), GTK_WIDGET(widgets->lfo_rate));
 
     label = gtk_label_new("LFO Delay:");
-    widgets->lfo_delay = create_hscale(0, 127, 25);
+    widgets->lfo_delay = create_hscale(0, 127, PARAMETER_LFO_DELAY);
     create_grid_row(grid, 6, GTK_LABEL(label), GTK_WIDGET(widgets->lfo_delay));
 
     button_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);

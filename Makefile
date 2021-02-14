@@ -1,12 +1,12 @@
 VERSION=3.0
 
 CC=cc
-CFLAGS=-Wall $(DEBUG) $(OPTIM)
+CFLAGS=-Wall -Werror $(OPTIM) $(DEBUG)
 OPTIM=#-Os
-DEBUG=-Werror -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGTK_DISABLE_SINGLE_INCLUDES -DGSEAL_ENABLE -g
-OBJS=main.o midi-alsa.o device.o dialog.o oscillators.o filters.o envelope.o amplifier.o xmlparser.o
+DEBUG=-g -DGTK_DISABLE_SINGLE_INCLUDES -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGSEAL_ENABLE
+OBJS=main.o midi.o device.o dialog.o oscillators.o filters.o envelope.o amplifier.o xmlparser.o
 INCS=`pkg-config --cflags gtk+-3.0`
-LIBS=`pkg-config --libs gtk+-3.0` -lasound
+LIBS=`pkg-config --libs gtk+-3.0` -lportmidi
 
 all : alphajuno
 

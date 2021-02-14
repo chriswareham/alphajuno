@@ -9,6 +9,7 @@ To compile, you require the following:
 
  NetBSD or Linux
  GTK 3
+ PortMidi
 
 You also require a MIDI interface that is supported by NetBSD or Linux.
 

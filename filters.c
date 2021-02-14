@@ -41,35 +41,35 @@ new_filters_dialog(GtkWindow *parent)
     grid = create_grid(GTK_CONTAINER(widgets->dialog));
 
     label = gtk_label_new("HPF Cutoff Frequency:");
-    widgets->hpf_cutoff_frequency = create_hscale(0, 3, 9);
+    widgets->hpf_cutoff_frequency = create_hscale(0, 3, PARAMETER_HPF_CUTOFF_FREQUENCY);
     create_grid_row(grid, 0, GTK_LABEL(label), GTK_WIDGET(widgets->hpf_cutoff_frequency));
 
     label = gtk_label_new("LPF Cutoff Frequency:");
-    widgets->lpf_cutoff_frequency = create_hscale(0, 127, 16);
+    widgets->lpf_cutoff_frequency = create_hscale(0, 127, PARAMETER_LPF_CUTOFF_FREQUENCY);
     create_grid_row(grid, 1, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_cutoff_frequency));
 
     label = gtk_label_new("LPF Resonance:");
-    widgets->lpf_resonance = create_hscale(0, 127, 17);
+    widgets->lpf_resonance = create_hscale(0, 127, PARAMETER_LPF_RESONANCE);
     create_grid_row(grid, 2, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_resonance));
 
     label = gtk_label_new("LPF Env Depth:");
-    widgets->lpf_env_depth = create_hscale(0, 127, 19);
+    widgets->lpf_env_depth = create_hscale(0, 127, PARAMETER_LPF_ENV_DEPTH);
     create_grid_row(grid, 3, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_env_depth));
 
     label = gtk_label_new("LPF Env Mode:");
-    widgets->lpf_env_mode = create_combo_box(lpf_env_modes, G_N_ELEMENTS(lpf_env_modes), 1);
+    widgets->lpf_env_mode = create_combo_box_with_entries(lpf_env_modes, G_N_ELEMENTS(lpf_env_modes), PARAMETER_LPF_ENV_MODE);
     create_grid_row(grid, 4, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_env_mode));
 
     label = gtk_label_new("LPF LFO Depth:");
-    widgets->lpf_lfo_depth = create_hscale(0, 127, 18);
+    widgets->lpf_lfo_depth = create_hscale(0, 127, PARAMETER_LPF_LFO_DEPTH);
     create_grid_row(grid, 5, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_lfo_depth));
 
     label = gtk_label_new("LPF Keyboard Follower:");
-    widgets->lpf_keyboard_follower = create_hscale(0, 15, 20);
+    widgets->lpf_keyboard_follower = create_hscale(0, 15, PARAMETER_LPF_KEYBOARD_FOLLOWER);
     create_grid_row(grid, 6, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_keyboard_follower));
 
     label = gtk_label_new("LPF Aftertouch Sensitivity:");
-    widgets->lpf_aftertouch_sensitivity = create_hscale(0, 15, 21);
+    widgets->lpf_aftertouch_sensitivity = create_hscale(0, 15, PARAMETER_LPF_AFTERTOUCH_SENSITIVITY);
     create_grid_row(grid, 7, GTK_LABEL(label), GTK_WIDGET(widgets->lpf_aftertouch_sensitivity));
 
     button_box = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
